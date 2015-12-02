@@ -17,7 +17,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         primaryStage.setTitle("Otoczka wypukła");
         Group root = new Group();
-        Canvas canvas = new Canvas(300, 250);
+        Canvas canvas = new Canvas(700, 500);
         GraphicsContext gc = canvas.getGraphicsContext2D();
         dodajPunkty();
         rysujPunkty(punkty,gc);
@@ -28,14 +28,15 @@ public class Main extends Application {
 
 
     public void dodajPunkty(){
-        Point2D p1 = new Point2D(70,30);
+        /*Point2D p1 = new Point2D(70,30);
         Point2D p2 = new Point2D(100,20);
         Point2D p3 = new Point2D(10,200);
         Point2D p4 = new Point2D(260,80);
         this.punkty.add(p1);
         this.punkty.add(p2);
         this.punkty.add(p3);
-        this.punkty.add(p4);
+        this.punkty.add(p4);*/
+        this.punkty = new PointsFromFileReader().read("dane.txt");
     }
 
     public void rysujPunkty(ArrayList<Point2D> punkty,GraphicsContext gc){
