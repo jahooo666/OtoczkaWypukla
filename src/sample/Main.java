@@ -28,23 +28,23 @@ public class Main extends Application {
         root.getChildren().add(canvas);
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
-        rysujPunkty(punkty, gc);
+        rysujPunktyPro(punkty, canvas);
     }
 
-    public Point2D findLowestPoint() {
+    public Point2D findFirstPoint() {
         //znajduje najniższy punkt
-        Point2D lowest = punkty.get(0);
+        Point2D first = punkty.get(0);
         for (Point2D punkt : punkty) {
-            if ((punkt.getY() > lowest.getY())
-                    || ((punkt.getY() == lowest.getY()) && (punkt.getY() == lowest.getY()))) {
-                lowest = punkt;
+            if ((punkt.getX() < first.getX())
+                    || ((punkt.getX() == first.getX()) && (punkt.getY() < first.getY()))) {
+                first = punkt;
             }
         }
-        return lowest;
+        return first;
     }
 
     public void sortujPunkty() {
-        Point2D lowest = findLowestPoint();
+        Point2D first = findFirstPoint();
         wypiszPunkty();
         Collections.sort(punkty, new Comparator<Point2D>() {
             @Override
@@ -56,7 +56,12 @@ public class Main extends Application {
         });
         System.out.println("nowe");
         wypiszPunkty();
+        System.out.println("zamieniam pierwszy");
+        punkty.remove(first);
+        punkty.add(0,first);
+        wypiszPunkty();
     }
+
 
     public void wypiszPunkty(){
         for (Point2D punkt: punkty) {
@@ -68,13 +73,27 @@ public class Main extends Application {
         this.punkty = new PointsFromFileReader().read("dane.txt");
     }
 
-    public void rysujPunkty(ArrayList<Point2D> punkty, GraphicsContext gc) {
-
+    public void rysujPunkty(ArrayList<Point2D> punkty, Canvas canvas) {
+        GraphicsContext gc = canvas.getGraphicsContext2D();
         for (Point2D punkt : punkty) {
-            gc.fillOval(punkt.getX(), punkt.getY(), 5, 5);
-            gc.fillText(Integer.toString(punkty.indexOf(punkt)),punkt.getX(), punkt.getY());
+            gc.fillOval(punkt.getX(),punkt.getY(), 5, 5);
+            gc.fillText(Integer.toString(punkty.indexOf(punkt)),punkt.getX(),punkt.getY());
         }
     }
+
+    public void rysujPunktyPro(ArrayList<Point2D> punkty, Canvas canvas) {
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        double w = canvas.getWidth();
+        double h = canvas.getHeight();
+
+        gc.strokeLine(w/2,0,w/2,h);
+        gc.strokeLine(0,h/2,w,h/2);
+        for (Point2D punkt : punkty) {
+            gc.fillOval(punkt.getX(),punkt.getY(), 5, 5);
+            gc.fillText(Integer.toString(punkty.indexOf(punkt)),punkt.getX(),punkt.getY());
+        }
+    }
+
 
     public static void main(String[] args) {
         launch(args);
