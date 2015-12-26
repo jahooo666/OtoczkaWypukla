@@ -21,7 +21,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("Otoczka wypukła");
         Group root = new Group();
-        Canvas canvas = new Canvas(700, 500);
+        Canvas canvas = new Canvas(1000, 800);
         GraphicsContext gc = canvas.getGraphicsContext2D();
         dodajPunkty();
         sortujPunkty();
@@ -35,8 +35,8 @@ public class Main extends Application {
         //znajduje najniższy punkt
         Point2D first = punkty.get(0);
         for (Point2D punkt : punkty) {
-            if ((punkt.getX() < first.getX())
-                    || ((punkt.getX() == first.getX()) && (punkt.getY() < first.getY()))) {
+            if ((punkt.getY() < first.getY())
+                    || ((punkt.getY() == first.getY()) && (punkt.getX() < first.getX()))) {
                 first = punkt;
             }
         }
@@ -46,20 +46,25 @@ public class Main extends Application {
     public void sortujPunkty() {
         Point2D first = findFirstPoint();
         wypiszPunkty();
+        punkty.remove(first);
+        przerzucWzgledemPierwszego(first);
+        first = new Point2D(0,0);
+        System.out.printf("Rozmiar nowego to: %d\n",punkty.size());
         Collections.sort(punkty, new Comparator<Point2D>() {
             @Override
             public int compare(Point2D o1, Point2D o2) {
                 double tan1 = Math.atan2(o1.getX(), o1.getY());
                 double tan2 = Math.atan2(o2.getX(), o2.getY());
-                return Double.compare(tan1, tan2);
+                return Double.compare(tan2, tan1);
             }
         });
+        punkty.add(0,first);
+        System.out.printf("Na końcu dlugosc rowna %d\n", punkty.size());
         System.out.println("nowe");
         wypiszPunkty();
         System.out.println("zamieniam pierwszy");
-        punkty.remove(first);
-        punkty.add(0,first);
-        przerzucWzgledemPierwszego();
+
+
         wypiszPunkty();
     }
 
@@ -82,8 +87,7 @@ public class Main extends Application {
         }
     }
 
-    public void przerzucWzgledemPierwszego(){
-        Point2D pierwszy = punkty.get(0);
+    public void przerzucWzgledemPierwszego(Point2D pierwszy){
         double x = pierwszy.getX();
         double y = pierwszy.getY();
         for (Point2D punkt : punkty) {
