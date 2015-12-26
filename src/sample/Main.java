@@ -38,9 +38,6 @@ public class Main extends Application {
         this.punkty = new PointsFromFileReader().read("dane.txt");
     }
 
-
-
-
     public static void main(String[] args) {
         launch(args);
     }

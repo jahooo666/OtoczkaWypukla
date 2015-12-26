@@ -8,8 +8,7 @@ import javafx.scene.paint.Color;
 import java.util.ArrayList;
 import java.util.Stack;
 
-public abstract class Rysowanie {
-
+public class Rysowanie {
 
     public static void rysujPunkty(ArrayList<Point2D> punkty, Canvas canvas) {
         GraphicsContext gc = canvas.getGraphicsContext2D();
@@ -41,14 +40,17 @@ public abstract class Rysowanie {
         gc.setLineWidth(3);
         gc.setStroke(Color.RED);
         Point2D first = wierzcholki.pop();
+        Point2D firstofAll = first;
         Point2D second = wierzcholki.pop();
 
-        gc.moveTo(first.getX(),first.getY());
+        //gc.moveTo(first.getX(),first.getY());
         while(!wierzcholki.isEmpty()){
             gc.strokeLine(first.getX()+w/2,h-first.getY()-h/2,second.getX()+w/2,h-second.getY()-h/2);
             first = second;
             second =  wierzcholki.pop();
         }
+        gc.strokeLine(first.getX()+w/2,h-first.getY()-h/2,second.getX()+w/2,h-second.getY()-h/2);
+        first = firstofAll;
         gc.strokeLine(first.getX()+w/2,h-first.getY()-h/2,second.getX()+w/2,h-second.getY()-h/2);
     }
 
