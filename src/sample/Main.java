@@ -36,6 +36,7 @@ public class Main extends Application {
 
     public void dodajPunkty() {
         this.punkty = new PointsFromFileReader().read("dane.txt");
+        //this.punkty = new PointsFromFileReader().read("dane2");
     }
 
     public static void main(String[] args) {
