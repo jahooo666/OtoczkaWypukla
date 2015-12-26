@@ -23,7 +23,14 @@ public class MonteCarlo {
         return wylosowane;
     }
 
+    public boolean czyNalezy(Point2D punkt, ArrayList<Point2D> otoczka){
+       //if( )
+        return true;
+    }
+
+
     public static ArrayList<Point2D> stackToArrayList(Stack<Point2D> stos) {
+        //konwerter stosu na ArrayListe - z odwroconą kolejnością!
         ArrayList<Point2D> wierzcholki = new ArrayList<>();
         while(!stos.isEmpty()){
             wierzcholki.add(stos.pop());
