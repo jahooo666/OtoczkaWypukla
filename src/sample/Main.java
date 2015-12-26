@@ -28,11 +28,11 @@ public class Main extends Application {
         Group root = new Group();
         Canvas canvas = new Canvas(1000, 800);
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        this.punkty = dodajPunkty("dane2");
+        this.punkty = dodajPunkty("dane.txt");
         Stack<Point2D> wierzcholki = znajdzOtoczke(punkty);
         root.getChildren().add(canvas);
         rysujPunktyPro(punkty, canvas);
-        System.out.printf("Pole figury to: %f\n",monteCarloCalculate(canvas,wierzcholki,10000));
+        //System.out.printf("Pole figury to: %f\n",monteCarloCalculate(canvas,wierzcholki,10000));
         rysujOtoczke(wierzcholki,canvas);
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
