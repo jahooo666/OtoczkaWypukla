@@ -36,12 +36,12 @@ public class Main extends Application {
         rysujOtoczke(wierzcholki,canvas);
 
 
-        Point2D A = new Point2D(1, 2);
-        Point2D B = new Point2D(3, 4);
-
-        Point2D C = new Point2D(2, 1);
-        Point2D D = new Point2D(3, 4);
-        System.out.println(sprawdzPrzecinanie(A,B,C,D));
+//        Point2D A = new Point2D(1, 2);
+//        Point2D B = new Point2D(3, 4);
+//
+//        Point2D C = new Point2D(2, 1);
+//        Point2D D = new Point2D(3, 4);
+//        System.out.println(sprawdzPrzecinanie(A,B,C,D));
 
 
         rysujWylosowanePunkty(losujPunkty(1000,canvas),canvas);

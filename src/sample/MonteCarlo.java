@@ -24,8 +24,19 @@ public class MonteCarlo {
     }
 
     public boolean czyNalezy(Point2D punkt, ArrayList<Point2D> otoczka){
-       //if( )
-        return true;
+        int liczbaPrzeciec = 0;
+        Point2D firstOfAll = otoczka.get(0);
+        Point2D first = firstOfAll;
+        Point2D second = otoczka.get(1);
+
+        for (int i = 2; i < otoczka.size() ; i++) {
+            first = second;
+            second = otoczka.get(i);
+
+
+        }
+        if(liczbaPrzeciec == 1)  return true;
+        if((liczbaPrzeciec == 2)||(liczbaPrzeciec==0))return false;
     }
 
 
