@@ -12,11 +12,20 @@ public class Rysowanie {
 
     public static void rysujPunkty(ArrayList<Point2D> punkty, Canvas canvas) {
         GraphicsContext gc = canvas.getGraphicsContext2D();
+        gc.setFill(Color.BLACK);
         for (Point2D punkt : punkty) {
             gc.fillOval(punkt.getX(), punkt.getY(), 5, 5);
             gc.fillText(Integer.toString(punkty.indexOf(punkt)), punkt.getX(), punkt.getY());
         }
     }
+    public static void rysujWylosowanePunkty(ArrayList<Point2D> punkty, Canvas canvas) {
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        gc.setFill(Color.LIGHTBLUE);
+        for (Point2D punkt : punkty) {
+            gc.fillOval(punkt.getX(), punkt.getY(), 3, 3);
+        }
+    }
+
 
     public static void rysujPunktyPro(ArrayList<Point2D> punkty, Canvas canvas) {
         GraphicsContext gc = canvas.getGraphicsContext2D();

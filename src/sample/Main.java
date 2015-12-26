@@ -11,8 +11,8 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.Stack;
 
-import static sample.Rysowanie.rysujOtoczke;
-import static sample.Rysowanie.rysujPunktyPro;
+import static sample.MonteCarlo.losujPunkty;
+import static sample.Rysowanie.*;
 import static sample.ZnajdowanieOtoczki.znajdzOtoczke;
 
 public class Main extends Application {
@@ -32,6 +32,8 @@ public class Main extends Application {
         primaryStage.show();
         rysujPunktyPro(punkty, canvas);
         rysujOtoczke(wierzcholki,canvas);
+
+        rysujWylosowanePunkty(losujPunkty(100000,canvas),canvas);
     }
 
     public void dodajPunkty() {
