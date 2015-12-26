@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.Stack;
 
+import static sample.MonteCarlo.MonteCarlo;
 import static sample.MonteCarlo.losujPunkty;
 import static sample.MonteCarlo.stackToArrayList;
 import static sample.PrzecinanieOdcinkow.sprawdzPrzecinanie;
@@ -32,25 +33,16 @@ public class Main extends Application {
         root.getChildren().add(canvas);
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
+        System.out.printf("Pole figury to: %f\n",MonteCarlo(canvas,wierzcholki));
         rysujPunktyPro(punkty, canvas);
         rysujOtoczke(wierzcholki,canvas);
-
-
-//        Point2D A = new Point2D(1, 2);
-//        Point2D B = new Point2D(3, 4);
-//
-//        Point2D C = new Point2D(2, 1);
-//        Point2D D = new Point2D(3, 4);
-//        System.out.println(sprawdzPrzecinanie(A,B,C,D));
-
-
-        rysujWylosowanePunkty(losujPunkty(1000,canvas),canvas);
         ArrayList<Point2D> otoczka = stackToArrayList(wierzcholki);
 
     }
 
     public void dodajPunkty() {
-        this.punkty = new PointsFromFileReader().read("dane.txt");
+        this.punkty = new PointsFromFileReader().read("kwadrat");
+        //this.punkty = new PointsFromFileReader().read("dane.txt");
         //this.punkty = new PointsFromFileReader().read("dane2");
     }
 

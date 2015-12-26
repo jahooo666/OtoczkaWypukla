@@ -29,6 +29,7 @@ public class Rysowanie {
 
     public static void rysujPunktyPro(ArrayList<Point2D> punkty, Canvas canvas) {
         GraphicsContext gc = canvas.getGraphicsContext2D();
+        gc.setFill(Color.RED);
         double w = canvas.getWidth();
         double h = canvas.getHeight();
         gc.strokeLine(w / 2, 0, w / 2, h);
