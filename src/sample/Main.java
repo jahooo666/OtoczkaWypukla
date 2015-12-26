@@ -55,6 +55,18 @@ public class Main extends Application {
             public int compare(Point2D o1, Point2D o2) {
                 double tan1 = Math.atan2(o1.getX(), o1.getY());
                 double tan2 = Math.atan2(o2.getX(), o2.getY());
+                if(tan1==tan2){
+                    int retval = Double.compare((o1.distance(0,0)),(o2.distance(0,0)));
+                   /*
+                   //tutaj sie powinno usuwać te punkty bo leżaą na jednej linii wzgledem zera. Oznacza to żę ten bliższy na pewno nie bedzie w otoczce
+
+                    if(retval>0){
+                        punkty.remove(o2);
+                    }else{
+                        punkty.remove(o1);
+                    }*/
+                    return retval;
+                }
                 return Double.compare(tan2, tan1);
             }
         });
