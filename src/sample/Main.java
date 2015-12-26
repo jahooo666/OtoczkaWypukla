@@ -59,6 +59,7 @@ public class Main extends Application {
         System.out.println("zamieniam pierwszy");
         punkty.remove(first);
         punkty.add(0,first);
+        przerzucWzgledemPierwszego();
         wypiszPunkty();
     }
 
@@ -81,16 +82,30 @@ public class Main extends Application {
         }
     }
 
+    public void przerzucWzgledemPierwszego(){
+        Point2D pierwszy = punkty.get(0);
+        double x = pierwszy.getX();
+        double y = pierwszy.getY();
+        for (Point2D punkt : punkty) {
+            Point2D nowy = punkt.subtract(x,y);
+            Collections.replaceAll(punkty,punkt,nowy);
+            System.out.println("lol");
+        }
+    }
+
+
     public void rysujPunktyPro(ArrayList<Point2D> punkty, Canvas canvas) {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         double w = canvas.getWidth();
         double h = canvas.getHeight();
-
         gc.strokeLine(w/2,0,w/2,h);
         gc.strokeLine(0,h/2,w,h/2);
-        for (Point2D punkt : punkty) {
-            gc.fillOval(punkt.getX(),punkt.getY(), 5, 5);
-            gc.fillText(Integer.toString(punkty.indexOf(punkt)),punkt.getX(),punkt.getY());
+
+        for (Point2D punkt : punkty){
+            gc.fillOval(punkt.getX()+w/2,h-punkt.getY()-h/2, 5, 5);
+            System.out.printf("x: %f, y: %f \n",punkt.getX()+w/2,h-punkt.getY()-h/2);
+            gc.fillText(Integer.toString(punkty.indexOf(punkt)),punkt.getX()+w/2,h-punkt.getY()-h/2);
+
         }
     }
 
