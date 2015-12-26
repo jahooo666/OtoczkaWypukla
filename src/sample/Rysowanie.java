@@ -37,7 +37,7 @@ public class Rysowanie {
 
         for (Point2D punkt : punkty) {
             gc.fillOval(punkt.getX() + w / 2, h - punkt.getY() - h / 2, 5, 5);
-            System.out.printf("x: %f, y: %f \n", punkt.getX() + w / 2, h - punkt.getY() - h / 2);
+            //System.out.printf("x: %f, y: %f \n", punkt.getX() + w / 2, h - punkt.getY() - h / 2);
             gc.fillText(Integer.toString(punkty.indexOf(punkt)), punkt.getX() + w / 2, h - punkt.getY() - h / 2);
 
         }

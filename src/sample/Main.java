@@ -11,15 +11,16 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.Stack;
 
-import static sample.MonteCarlo.MonteCarlo;
-import static sample.MonteCarlo.losujPunkty;
+import static sample.MonteCarlo.monteCarloCalculate;
 import static sample.MonteCarlo.stackToArrayList;
-import static sample.PrzecinanieOdcinkow.sprawdzPrzecinanie;
-import static sample.Rysowanie.*;
+import static sample.PointsFromFileReader.readFromFile;
+import static sample.Rysowanie.rysujOtoczke;
+import static sample.Rysowanie.rysujPunktyPro;
+import static sample.TestyDokladnosci.testuj;
 import static sample.ZnajdowanieOtoczki.znajdzOtoczke;
 
 public class Main extends Application {
-    ArrayList<Point2D> punkty = new ArrayList<>();
+    static ArrayList<Point2D> punkty = new ArrayList<>();
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -27,23 +28,22 @@ public class Main extends Application {
         Group root = new Group();
         Canvas canvas = new Canvas(1000, 800);
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        dodajPunkty();
-        Stack<Point2D> wierzcholki = znajdzOtoczke(punkty);
-
-        root.getChildren().add(canvas);
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
-        System.out.printf("Pole figury to: %f\n",MonteCarlo(canvas,wierzcholki));
-        rysujPunktyPro(punkty, canvas);
-        rysujOtoczke(wierzcholki,canvas);
-        ArrayList<Point2D> otoczka = stackToArrayList(wierzcholki);
+        //this.punkty = dodajPunkty("dane2");
+        //Stack<Point2D> wierzcholki = znajdzOtoczke(punkty);
+        //root.getChildren().add(canvas);
+        //primaryStage.setScene(new Scene(root));
+        //primaryStage.show();
+        //System.out.printf("Pole figury to: %f\n",monteCarloCalculate(canvas,wierzcholki,10000));
+        testuj(canvas);
+        //rysujPunktyPro(punkty, canvas);
+        //rysujOtoczke(wierzcholki,canvas);
+        //ArrayList<Point2D> otoczka = stackToArrayList(wierzcholki);
 
     }
 
-    public void dodajPunkty() {
-        this.punkty = new PointsFromFileReader().read("kwadrat");
-        //this.punkty = new PointsFromFileReader().read("dane.txt");
-        //this.punkty = new PointsFromFileReader().read("dane2");
+    public static ArrayList<Point2D> dodajPunkty(String fileName) {
+        ArrayList<Point2D> punkty = readFromFile(fileName);
+        return punkty;
     }
 
     public static void main(String[] args) {

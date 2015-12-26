@@ -57,10 +57,6 @@ public class PrzygotowaniePunktow {
         }
     }
 
-
-
-
-
     public static void przerzucWzgledemPierwszego(ArrayList<Point2D> punkty,Point2D pierwszy) {
         double x = pierwszy.getX();
         double y = pierwszy.getY();

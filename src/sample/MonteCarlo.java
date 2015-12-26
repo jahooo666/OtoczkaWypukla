@@ -13,6 +13,43 @@ import static sample.PrzecinanieOdcinkow.sprawdzPrzecinanie;
 import static sample.Rysowanie.rysujWylosowanePunkty;
 
 public class MonteCarlo {
+
+    public static double monteCarloCalculate(Canvas canvas, Stack<Point2D> wierzcholki,int dokladnosc) {
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        double w = canvas.getWidth();
+        double h = canvas.getHeight();
+        ArrayList<Point2D> otoczka = stackToArrayList(wierzcholki);
+
+        otoczka = przesunPunktyOtoczki(otoczka, canvas);
+        int s = otoczka.size()-1;
+        Point2D ostatni = new Point2D(otoczka.get(s).getX(),otoczka.get(s).getY());
+        otoczka.add(ostatni);
+
+        double poleCale = canvas.getHeight() * canvas.getWidth();
+        int wszystkie = dokladnosc;
+        int trafione = 0;
+        ArrayList<Point2D> wylosowane = losujPunkty(wszystkie, canvas);
+        rysujWylosowanePunkty(wylosowane, canvas);
+
+        for (Point2D punkt : wylosowane) {
+            if (czyNalezy(punkt, otoczka)){
+                trafione++;
+                canvas.getGraphicsContext2D().setFill(Color.DARKVIOLET);
+                canvas.getGraphicsContext2D().fillOval(punkt.getX(), punkt.getY(), 3, 3);
+            }
+        }
+        //System.out.printf("\nJest %d trafionych na %d wystrzelonych\n", trafione, wszystkie);
+        //chyba jest problem z dzieleniem doubli vo ychodzi 0
+        double wszystkieD = wszystkie;
+        double trafioneD = trafione;
+
+        double procentTrafien = (double)(trafioneD / wszystkieD)*100.0;
+        //System.out.printf("Procent trafien to: %f procent \n", procentTrafien);
+        double poleTrafione = procentTrafien * poleCale/100;
+        return poleTrafione;
+    }
+
+
     public static ArrayList<Point2D> losujPunkty(int ile, Canvas canvas) {
         //losowanie podanej liczby punktow w obszarze ograniczonym przez canvas
         double w = canvas.getWidth();
@@ -88,37 +125,5 @@ public class MonteCarlo {
         return wierzcholki;
     }
 
-    public static double MonteCarlo(Canvas canvas, Stack<Point2D> wierzcholki) {
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-        double w = canvas.getWidth();
-        double h = canvas.getHeight();
-        ArrayList<Point2D> otoczka = stackToArrayList(wierzcholki);
 
-        otoczka = przesunPunktyOtoczki(otoczka, canvas);
-        int s = otoczka.size()-1;
-        Point2D ostatni = new Point2D(otoczka.get(s).getX(),otoczka.get(s).getY());
-        otoczka.add(ostatni);
-
-        double poleCale = canvas.getHeight() * canvas.getWidth();
-        int wszystkie = 10000;
-        int trafione = 0;
-        ArrayList<Point2D> wylosowane = losujPunkty(wszystkie, canvas);
-        rysujWylosowanePunkty(wylosowane, canvas);
-
-        for (Point2D punkt : wylosowane) {
-            if (czyNalezy(punkt, otoczka)){
-                trafione++;
-                canvas.getGraphicsContext2D().setFill(Color.DARKVIOLET);
-                canvas.getGraphicsContext2D().fillOval(punkt.getX(), punkt.getY(), 3, 3);
-            }
-        }
-        //chyba jest problem z dzieleniem doubli vo ychodzi 0
-        double wszystkieD = wszystkie;
-        double trafioneD = trafione;
-
-        double procentTrafien = (trafioneD / wszystkieD);
-        System.out.printf("Procent trafien to: %f procent \n", procentTrafien * 100);
-        double poleTrafione = procentTrafien * poleCale;
-        return poleTrafione;
-    }
 }

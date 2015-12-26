@@ -9,10 +9,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class PointsFromFileReader {
-    ArrayList<Point2D> punkty;
 
-    public ArrayList<Point2D> read(String file){
-        punkty = new ArrayList<>();
+    public static ArrayList<Point2D> readFromFile(String file){
+        ArrayList<Point2D> punkty = new ArrayList<>();
         try {
             Scanner odczyt = new Scanner(new File(file));
             while(odczyt.hasNext()){
