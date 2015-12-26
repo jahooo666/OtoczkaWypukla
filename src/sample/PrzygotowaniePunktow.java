@@ -21,11 +21,11 @@ public class PrzygotowaniePunktow {
 
     public static void sortujPunkty(ArrayList<Point2D> punkty) {
         Point2D first = findFirstPoint(punkty);
-        wypiszPunkty(punkty);
+        //wypiszPunkty(punkty);
         punkty.remove(first);
         przerzucWzgledemPierwszego(punkty,first);
         first = new Point2D(0, 0);
-        System.out.printf("Rozmiar nowego to: %d\n", punkty.size());
+        //System.out.printf("Rozmiar nowego to: %d\n", punkty.size());
         Collections.sort(punkty, new Comparator<Point2D>() {
             @Override
             public int compare(Point2D o1, Point2D o2) {

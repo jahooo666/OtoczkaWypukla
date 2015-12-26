@@ -64,7 +64,6 @@ public class MonteCarlo {
         }
 
         if (liczbaPrzeciec == 1) {
-            System.out.printf("|");
             return true;
         } else if (liczbaPrzeciec == 2){
             return false;
@@ -86,7 +85,6 @@ public class MonteCarlo {
         for (int i = wierzcholki.size() - 1; i >= 0; i--) {
             stos.push(wierzcholki.get(i));
         }
-        System.out.printf("Zwracam liste o dlugosci %d\n", wierzcholki.size());
         return wierzcholki;
     }
 
@@ -118,7 +116,6 @@ public class MonteCarlo {
         double wszystkieD = wszystkie;
         double trafioneD = trafione;
 
-        System.out.printf("dziele %f przez %f \n", trafioneD, wszystkieD);
         double procentTrafien = (trafioneD / wszystkieD);
         System.out.printf("Procent trafien to: %f procent \n", procentTrafien * 100);
         double poleTrafione = procentTrafien * poleCale;
